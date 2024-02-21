@@ -53,6 +53,7 @@ jobs:
         docker build -t us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/signed-url-generator/signed-url-generator:latest .
         docker push us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/signed-url-generator/signed-url-generator:latest
 
+
     - name: Deploy to Cloud Run (CLI)
       run: |
         gcloud run deploy signed-url-generator \

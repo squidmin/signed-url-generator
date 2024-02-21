@@ -59,7 +59,7 @@ jobs:
         gcloud run deploy signed-url-generator \
           --image=us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/signed-url-generator/signed-url-generator:latest \
           --project=${{ secrets.GCP_PROJECT_ID }} \
-          --service-account=gh-actions-pipeline@${{ secrets.GCP_PROJECT_ID }}.iam.gserviceaccount.com \
+          --service-account=signed-url-generator-sa@${{ secrets.GCP_PROJECT_ID }}.iam.gserviceaccount.com \
           --region=us-central1 \
           --platform=managed \
           --quiet \

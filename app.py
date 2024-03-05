@@ -8,7 +8,7 @@ import json
 app = Flask(__name__)
 # This enables CORS for all domains on all routes. For high-stakes production deployments,
 # you might want to restrict this.
-CORS(app)
+CORS(app, supports_credentials=True)
 
 
 def get_service_account_credentials(project_id, secret_id):

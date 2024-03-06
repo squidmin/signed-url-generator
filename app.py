@@ -1,10 +1,17 @@
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 from google.cloud import storage, secretmanager
 from google.oauth2 import service_account
 import datetime
 import json
 
 app = Flask(__name__)
+# This enables CORS for all domains on all routes. For high-stakes production deployments,
+# you might want to restrict this.
+# CORS(app)
+# CORS(app, supports_credentials=True)
+CORS(app, resources={r"*": {"origins": "*", "allow_headers": "*"}})
+# CORS(app, resources={r"/generate-signed-url": {"origins": "http://localhost:3000"}}, supports_credentials=True)
 
 
 def get_service_account_credentials(project_id, secret_id):
@@ -39,8 +46,8 @@ def generate_signed_url(bucket_name, blob_name, project_id, secret_id):
 def get_signed_url():
     bucket_name = request.args.get('bucket_name')
     blob_name = request.args.get('blob_name')
-    project_id = request.args.get('project_id')  # Add this
-    secret_id = request.args.get('secret_id')  # Add this
+    project_id = request.args.get('project_id')
+    secret_id = request.args.get('secret_id')
 
     if not bucket_name or not blob_name or not project_id or not secret_id:
         return jsonify({'error': 'Missing required parameters'}), 400

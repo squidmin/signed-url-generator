@@ -1,4 +1,7 @@
 Flask
+gunicorn
 google-cloud-secret-manager
 google-cloud-storage
-gunicorn
+google-auth
+requests
+flask-cors
